@@ -143,17 +143,26 @@ io.on("connection", (socket) => {
     });
 
     socket.on("playerLeft", async ({ roomId, playerId }) => {
-        const room = await Room.findById(roomId);
-        if (!room) return;
-        const opponent = room.players.find(p => p.socketID !== playerId);
-        if (opponent) {
-            io.to(roomId).emit("gameOver", { winner: opponent.nickname, reason: "opponent_left" });
-        }
-        await Room.findByIdAndDelete(roomId);
-    });
+        try {
+            const room = await Room.findById(roomId);
+            if (!room) return;
 
-    socket.on("disconnect", () => {
-        console.log(`Socket disconnected: ${socket.id}`);
+            const opponent = room.players.find(p => p.socketID !== playerId);
+            if (opponent) {
+                // Emit to the specific opponent's socket, not the room
+                io.to(opponent.socketID).emit("gameOver", {
+                    winner: opponent.nickname,
+                    reason: "opponent_left"
+                });
+            }
+
+            // Delete room after a small delay
+            setTimeout(async () => {
+                await Room.findByIdAndDelete(roomId);
+            }, 1000);
+        } catch (e) {
+            console.log("Error in playerLeft:", e);
+        }
     });
 });
 

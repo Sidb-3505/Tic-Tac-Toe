@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -9,7 +10,9 @@ class SocketClient {
   IO.Socket? socket;
 
   SocketClient._internal() {
-    final serverUrl = dotenv.env['SERVER_URL']!;
+    final serverUrl = kDebugMode
+        ? 'http://10.0.2.2:10000'
+        : dotenv.env['SERVER_URL']!;
     socket = IO.io(serverUrl, <String, dynamic>{
       /// Forces using WebSocket transport only
       'transports': ['websocket'],

@@ -63,7 +63,7 @@ void winGameDialog(BuildContext context, String text) {
               Navigator.pop(context); // Close dialog first
               // Add a small delay before navigating
               Future.delayed(Duration(milliseconds: 100), () {
-                SocketMethods().disconnectSocket();
+                SocketMethods().clearListeners();
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   MainMenuScreen.routeName, // the screen you want at the top

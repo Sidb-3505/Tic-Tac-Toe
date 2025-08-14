@@ -70,47 +70,25 @@ class _GameScreenState extends State<GameScreen> {
                     listen: false,
                   );
 
-                  // Safely get current player info
-                  String? mySocketId;
-                  try {
-                    final players =
-                        roomDataProvider.roomData['players'] as List?;
-                    if (players != null && players.isNotEmpty) {
-                      final currentPlayer = players.firstWhere(
-                        (player) =>
-                            player['nickname'] ==
-                            roomDataProvider.player1.nickname,
-                        orElse: () => null,
-                      );
-                      if (currentPlayer != null) {
-                        mySocketId = currentPlayer['socketID'];
-                      }
-                    }
-                  } catch (e) {
-                    // Handle error gracefully
-                    print('Error getting player info: $e');
-                  }
+                  // Get MY actual socket ID from the socket client
+                  String? mySocketId = _socketMethods.socketClient.id;
 
-                  // Emit player left event if we have socket ID
+                  // Emit player left event
                   if (mySocketId != null) {
                     _socketMethods.socketClient.emit('playerLeft', {
                       'roomId': roomDataProvider.roomData['_id'],
-                      'playerId': mySocketId,
+                      'playerId': mySocketId, // Use actual socket ID
                     });
                   }
 
-                  // Disconnect and navigate
-                  _socketMethods.disconnectSocket();
+                  // Clear listeners and navigate immediately
+                  _socketMethods.clearListeners();
                   Navigator.of(context).pop(true);
-                  // Add a small delay before navigating
-                  Future.delayed(Duration(milliseconds: 100), () {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      MainMenuScreen
-                          .routeName, // the screen you want at the top
-                      (route) => false, // remove all existing routes
-                    );
-                  });
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    MainMenuScreen.routeName,
+                    (route) => false,
+                  );
                 },
                 child: const Text(
                   'Quit',
