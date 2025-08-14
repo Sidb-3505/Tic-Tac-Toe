@@ -9,6 +9,7 @@ import 'package:tic_tac_toe/screens/main_menu_screen.dart';
 import 'package:tic_tac_toe/utils/colors.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }

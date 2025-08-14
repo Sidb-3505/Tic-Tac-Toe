@@ -9,7 +9,7 @@ class SocketClient {
   IO.Socket? socket;
 
   SocketClient._internal() {
-    final serverUrl = dotenv.env['SERVER_URL'];
+    final serverUrl = dotenv.env['SERVER_URL']!;
     socket = IO.io(serverUrl, <String, dynamic>{
       /// Forces using WebSocket transport only
       'transports': ['websocket'],
