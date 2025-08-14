@@ -1,0 +1,48 @@
+# ====================
+# Flutter / Dart
+# ====================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+pubspec.lock
+
+# iOS
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.symlinks
+ios/Pods
+ios/Podfile.lock
+
+# Android
+android/.gradle
+android/app/build/
+android/local.properties
+.gradle/
+*.iml
+
+# ====================
+# Node.js Backend (server/)
+# ====================
+server/node_modules/
+server/package-lock.json
+server/npm-debug.log*
+server/yarn-debug.log*
+server/yarn-error.log*
+
+# ====================
+# Environment Variables
+# ====================
+.env
+server/.env
+
+# ====================
+# Misc
+# ====================
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
