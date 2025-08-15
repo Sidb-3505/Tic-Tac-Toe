@@ -30,14 +30,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #socket client
   socket_io_client: ^3.1.2
+  
+  #provide state management
   provider: ^6.0.2
+  
+  #to show celebration animation
   confetti: ^0.7.0
   lottie: ^2.2.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  #to use environment variables
   flutter_dotenv: ^5.2.1
 
 dev_dependencies:
@@ -67,6 +73,7 @@ flutter:
      - .env
      - assets/celebration.json
      - assets/images/
+     - assets/screenshots/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

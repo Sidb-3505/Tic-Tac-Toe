@@ -28,7 +28,7 @@ A **real-time multiplayer** Tic Tac Toe game built with **Flutter** for the fron
 
 ---
 
-## 🚀 Quick Start  
+## 🚀 Quick Start
 
 ### **Frontend Setup**  
 ```bash
@@ -43,42 +43,16 @@ flutter run
 ```bash
 cd backend
 npm install
-npm start
+npm run start
 
 
-## 📸 App Screenshots  
+## 📱 Screenshots
 
-<div align="center">
+| Home | Create | Join |
+|-------|------|---------|
+| <img src="assets/screenshots/home_screen.jpg" width="200"/> | <img src="assets/screenshots/create_room_screen.jpg" width="200"/> | <img src="assets/screenshots/join_room_screen.jpg" width="200"/> |
 
-<!-- Row 1 -->
-<table>
-<tr>
-<td align="center">
-<b>🏠 Main Menu</b><br>
-<img src="assets/screenshots/mainmenu.png" width="55%">
-</td>
-<td align="center">
-<b>⏳ Waiting Lobby</b><br>
-<img src="assets/screenshots/waiting_lobby.png" width="55%">
-</td>
-<td align="center">
-<b>🎯 Game Screen</b><br>
-<img src="assets/screenshots/game_screen.png" width="55%">
-</td>
-</tr>
-
-<!-- Row 2 -->
-<tr>
-<td align="center">
-<b>🏆 Winning Screen</b><br>
-<img src="assets/screenshots/winning_screen.png" width="55%">
-</td>
-<td align="center">
-<b>🤝 Draw Screen</b><br>
-<img src="assets/screenshots/draw_screen.png" width="55%">
-</td>
-</tr>
-</table>
-
-</div>
-
+| Game Screen | Win Game |
+|-------|--------------|
+| <img src="assets/screenshots/game_screen.jpg" width="200"/> | <img src="assets/screenshots/won_the_game.jpg" width="200"/> |
+ 
