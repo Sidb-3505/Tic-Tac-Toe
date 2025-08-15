@@ -40,7 +40,6 @@ flutter run
 
 
 ### **Backend Setup**  
-```bash
 cd backend
 npm install
 npm run start
@@ -49,10 +48,10 @@ npm run start
 ## 📱 Screenshots
 
 | Home | Create | Join |
-|-------|------|---------|
-| <img src="assets/screenshots/home_screen.jpg" width="200"/> | <img src="assets/screenshots/create_room_screen.jpg" width="200"/> | <img src="assets/screenshots/join_room_screen.jpg" width="200"/> |
+|------|--------|------|
+| ![Home](assets/screenshots/home_screen.jpg) | ![Create](assets/screenshots/create_room_screen.jpg) | ![Join](assets/screenshots/join_room_screen.jpg) |
 
 | Game Screen | Win Game |
-|-------|--------------|
-| <img src="assets/screenshots/game_screen.jpg" width="200"/> | <img src="assets/screenshots/won_the_game.jpg" width="200"/> |
- 
+|------------|----------|
+| ![Game Screen](assets/screenshots/game_screen.jpg) | ![Win Game](assets/screenshots/won_the_game.jpg) |
+
