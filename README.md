@@ -49,8 +49,8 @@ npm run start
 
 | Home | Create | Join |
 |------|--------|------|
-| ![Home](assets/screenshots/home_screen.jpg) | ![Create](assets/screenshots/create_room_screen.jpg) | ![Join](assets/screenshots/join_room_screen.jpg) |
+| ![Home](https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/home_screen.jpg) | ![Create](https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/create_room_screen.jpg) | ![Join](https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/join_room_screen.jpg) |
 
 | Game Screen | Win Game |
 |-------------|----------|
-| ![Game Screen](assets/screenshots/game_screen.jpg) | ![Win Game](assets/screenshots/won_the_game.jpg) |
+| ![Game Screen](https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/game_screen.jpg) | ![Win Game](https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/won_the_game.jpg) |
