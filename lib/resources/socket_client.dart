@@ -10,6 +10,8 @@ class SocketClient {
   IO.Socket? socket;
 
   SocketClient._internal() {
+    /// while testing -> connects to local server
+    /// while in use -> use hosted backend server
     final serverUrl = kDebugMode
         ? 'http://10.0.2.2:10000'
         : dotenv.env['SERVER_URL']!;
@@ -17,7 +19,7 @@ class SocketClient {
       /// Forces using WebSocket transport only
       'transports': ['websocket'],
       'autoConnect': false,
-    }); //192.168.56.1
+    });
 
     /// Attach event listeners first
     socket!.onConnect((_) {

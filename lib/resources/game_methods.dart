@@ -10,8 +10,10 @@ class GameMethods {
       listen: false,
     );
 
+    /// to store the winner
     String winner = '';
 
+    /// checking the win condition (for faster checking -> no nested for loop)
     // Checking rows
     if (roomDataProvider.displayElements[0] ==
             roomDataProvider.displayElements[1] &&
@@ -73,20 +75,21 @@ class GameMethods {
         roomDataProvider.displayElements[2] != '') {
       winner = roomDataProvider.displayElements[2];
     }
+
+    /// to check draw
     if (roomDataProvider.filledBoxes == 9 && winner == '') {
       winner = '';
       socketClient.emit('draw', {'roomId': roomDataProvider.roomData['_id']});
     }
 
+    /// if winner found
     if (winner != '') {
       if (roomDataProvider.player1.playerType == winner) {
-        //showGameDialog(context, '${roomDataProvider.player1.nickname} won!');
         socketClient.emit('winner', {
           'winnerSocketId': roomDataProvider.player1.socketID,
           'roomId': roomDataProvider.roomData['_id'],
         });
       } else {
-        //showGameDialog(context, '${roomDataProvider.player2.nickname} won!');
         socketClient.emit('winner', {
           'winnerSocketId': roomDataProvider.player2.socketID,
           'roomId': roomDataProvider.roomData['_id'],
@@ -95,6 +98,7 @@ class GameMethods {
     }
   }
 
+  /// to clear the board
   void clearBoard(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(
       context,

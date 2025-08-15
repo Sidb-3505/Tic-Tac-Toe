@@ -16,17 +16,18 @@ class Scoreboard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              /// player 1 name & points
               Text(
                 roomDataProvider.player1.nickname,
                 style: const TextStyle(
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
               Text(
                 roomDataProvider.player1.points.toInt().toString(),
-                style: const TextStyle(fontSize: 20, color: Colors.white),
+                style: const TextStyle(fontSize: 22, color: Colors.white),
               ),
             ],
           ),
@@ -36,17 +37,18 @@ class Scoreboard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              /// player 2 name & points
               Text(
                 roomDataProvider.player2.nickname,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
               Text(
                 roomDataProvider.player2.points.toInt().toString(),
-                style: const TextStyle(fontSize: 20, color: Colors.white),
+                style: const TextStyle(fontSize: 22, color: Colors.white),
               ),
             ],
           ),

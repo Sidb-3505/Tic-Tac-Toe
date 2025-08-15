@@ -37,6 +37,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      /// body
       body: Responsive(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -50,11 +51,15 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                 fontSize: 70,
               ),
               SizedBox(height: size.height * 0.08),
+
+              /// name text field
               CustomTextField(
                 controller: _nameController,
                 hintText: 'Enter your nickname',
               ),
               SizedBox(height: size.height * 0.045),
+
+              /// create button
               CustomButton(
                 onTap: () => _socketMethods.createRoom(_nameController.text),
                 text: 'Create',

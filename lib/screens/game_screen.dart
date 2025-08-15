@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/provider/room_data_provider.dart';
+import 'package:tic_tac_toe/resources/game_methods.dart';
 import 'package:tic_tac_toe/screens/main_menu_screen.dart';
 import 'package:tic_tac_toe/views/scoreboard.dart';
 import '../resources/socket_methods.dart';
@@ -17,7 +18,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   final SocketMethods _socketMethods = SocketMethods();
-  bool _listenersInitialized = false; // Add this flag
+  bool _listenersInitialized = false;
 
   @override
   void initState() {
@@ -25,6 +26,7 @@ class _GameScreenState extends State<GameScreen> {
     _initializeListeners();
   }
 
+  /// to initialize all listeners
   void _initializeListeners() {
     if (!_listenersInitialized) {
       _socketMethods.updateRoomListener(context);
@@ -54,15 +56,18 @@ class _GameScreenState extends State<GameScreen> {
               'Do you want to quit the match or resume playing?',
             ),
             actions: [
+              /// resume game button
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context); // Stay in game
+                  Navigator.pop(context);
                 },
                 child: const Text(
                   'Resume',
                   style: TextStyle(fontSize: 20, color: Colors.blue),
                 ),
               ),
+
+              /// quit game button
               TextButton(
                 onPressed: () {
                   final roomDataProvider = Provider.of<RoomDataProvider>(
@@ -81,14 +86,18 @@ class _GameScreenState extends State<GameScreen> {
                     });
                   }
 
-                  // Clear listeners and navigate immediately
-                  _socketMethods.clearListeners();
-                  Navigator.of(context).pop(true);
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    MainMenuScreen.routeName,
-                    (route) => false,
-                  );
+                  /// to clear the board for next round
+                  GameMethods().clearBoard(context);
+
+                  Future.delayed(Duration(milliseconds: 300), () {
+                    _socketMethods.clearListeners();
+                    Navigator.of(context).pop(true);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      MainMenuScreen.routeName,
+                      (route) => false,
+                    );
+                  });
                 },
                 child: const Text(
                   'Quit',
@@ -112,17 +121,23 @@ class _GameScreenState extends State<GameScreen> {
         }
       },
       child: Scaffold(
+        /// shows waiting lobby if only 1 player is there
         body: roomDataProvider.roomData['isJoin']
             ? const WaitingLobby()
             : SafeArea(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    /// to show scoreboard
                     const Scoreboard(),
+
+                    /// to show ticktactoe gird
                     const TicTacToeBoard(),
+
+                    /// to show current user's turn
                     Text(
                       '${roomDataProvider.roomData['turn']['nickname']}\'s Turn',
-                      style: TextStyle(fontSize: 24),
+                      style: TextStyle(fontSize: 26),
                     ),
                   ],
                 ),

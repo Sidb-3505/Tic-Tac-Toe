@@ -22,6 +22,8 @@ class MainMenuScreen extends StatelessWidget {
     return Responsive(
       child: Scaffold(
         backgroundColor: bgColor,
+
+        /// app bar
         appBar: AppBar(
           title: Text(
             'Tic-Tac-Toe',
@@ -49,6 +51,8 @@ class MainMenuScreen extends StatelessWidget {
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
           ),
         ),
+
+        /// body
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -76,6 +80,8 @@ class MainMenuScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+
+                  /// image
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
@@ -88,6 +94,8 @@ class MainMenuScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 100),
+
+              /// create & join room buttons
               CustomButton(
                 onTap: () => createRoom(context),
                 text: 'Create Room',

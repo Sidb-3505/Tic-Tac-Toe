@@ -19,6 +19,7 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
     _socketMethods.tappedListener(context);
   }
 
+  /// deals with cell tapping & updation
   void tapped(int index, RoomDataProvider roomDataProvider) {
     _socketMethods.tapGrid(
       index,
@@ -35,7 +36,7 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: size.height * 0.7, maxWidth: 500),
       child: AbsorbPointer(
-        // if player whose turn's socketID != socketmethod's socketID
+        /// if player whose turn's socketID != socketmethod's socketID
         absorbing:
             roomDataProvider.roomData['turn']['socketID'] !=
             _socketMethods.socketClient.id,

@@ -6,10 +6,12 @@ import '../resources/game_methods.dart';
 import '../resources/socket_methods.dart';
 import '../screens/main_menu_screen.dart';
 
+/// snack bar
 void showSnackBar(BuildContext context, String content) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(content)));
 }
 
+/// dialog box when a player wins a round
 void showGameDialog(BuildContext context, String text) {
   showDialog(
     barrierDismissible: false,
@@ -31,6 +33,7 @@ void showGameDialog(BuildContext context, String text) {
   );
 }
 
+/// to show the celebration animation
 void showCelebrationAnimation(BuildContext context) {
   showDialog(
     context: context,
@@ -58,10 +61,12 @@ void winGameDialog(BuildContext context, String text) {
       return AlertDialog(
         title: Text(text),
         actions: [
+          /// quit game button
           TextButton(
             onPressed: () {
               Navigator.pop(context); // Close dialog first
-              // Add a small delay before navigating
+
+              GameMethods().clearBoard(context);
               Future.delayed(Duration(milliseconds: 100), () {
                 SocketMethods().clearListeners();
                 Navigator.pushNamedAndRemoveUntil(
@@ -73,10 +78,14 @@ void winGameDialog(BuildContext context, String text) {
             },
             child: const Text('Quit', style: TextStyle(color: Colors.red)),
           ),
+
+          /// rematch button
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close dialog first
-              // Add rematch logic here later
+              /// top pop the dialog box
+              Navigator.pop(context);
+
+              /// Functionality yet to be added
             },
             child: const Text('Rematch', style: TextStyle(color: Colors.blue)),
           ),

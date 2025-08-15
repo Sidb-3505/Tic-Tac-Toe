@@ -10,6 +10,8 @@ import 'package:tic_tac_toe/utils/colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// to load the env file
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
@@ -17,7 +19,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
         title: 'Tic Tac Toe App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: bgColor),
+
+        /// routes
         routes: {
           MainMenuScreen.routeName: (context) => const MainMenuScreen(),
           JoinRoomScreen.routeName: (context) => const JoinRoomScreen(),

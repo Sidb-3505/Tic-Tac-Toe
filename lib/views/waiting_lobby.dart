@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/provider/room_data_provider.dart';
 import 'package:tic_tac_toe/utils/utils.dart';
 import 'package:tic_tac_toe/widgets/custom_text_field.dart';
-
 import '../widgets/custom_button.dart';
 
 class WaitingLobby extends StatefulWidget {
@@ -39,6 +38,7 @@ class _WaitingLobbyState extends State<WaitingLobby> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        /// waiting lobby
         const Text('Waiting for a player to join...'),
         const SizedBox(height: 20),
         CustomTextField(

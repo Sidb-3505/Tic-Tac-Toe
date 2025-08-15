@@ -13,7 +13,6 @@ class SocketMethods {
 
   Socket get socketClient => _socketClient;
 
-  /// EMITS
   void createRoom(String nickname) {
     if (nickname.trim().isNotEmpty) {
       _socketClient.emit('createRoom', {'nickname': nickname});
@@ -33,7 +32,17 @@ class SocketMethods {
     }
   }
 
-  /// LISTERNERS
+  /// to update the room after both players have joined
+  void updateRoomListener(BuildContext context) {
+    _socketClient.off('updateRoom'); // Clear existing listener
+    _socketClient.on('updateRoom', (data) {
+      Provider.of<RoomDataProvider>(
+        context,
+        listen: false,
+      ).updateRoomData(data);
+    });
+  }
+
   /// create room success listener
   void createRoomSuccessListener(BuildContext context) {
     _socketClient.off('createRoomSuccess'); // Clear existing listener
@@ -66,20 +75,7 @@ class SocketMethods {
     });
   }
 
-  void clearListeners() {
-    _socketClient.off("createRoomSuccess");
-    _socketClient.off("joinRoomSuccess");
-    _socketClient.off("errorOccured");
-    _socketClient.off("updatePlayers");
-    _socketClient.off("updateRoom");
-    _socketClient.off("tapped");
-    _socketClient.off("pointIncrease");
-    _socketClient.off("endGame");
-    _socketClient.off("drawRound");
-    _socketClient.off("gameOver");
-  }
-
-  /// FUNCTIONS
+  /// player state & details update listener
   void updatePlayersStateListener(BuildContext context) {
     _socketClient.off('updatePlayers'); // Clear existing listener
     _socketClient.on('updatePlayers', (playerData) {
@@ -95,17 +91,7 @@ class SocketMethods {
     });
   }
 
-  /// to update the room after both players have joined
-  void updateRoomListener(BuildContext context) {
-    _socketClient.off('updateRoom'); // Clear existing listener
-    _socketClient.on('updateRoom', (data) {
-      Provider.of<RoomDataProvider>(
-        context,
-        listen: false,
-      ).updateRoomData(data);
-    });
-  }
-
+  /// cell tap listener
   void tappedListener(BuildContext context) {
     _socketClient.off('tapped'); // Clear existing listener
     _socketClient.on('tapped', (data) {
@@ -129,6 +115,7 @@ class SocketMethods {
     });
   }
 
+  /// point increase listener
   void pointIncreaseListener(BuildContext context) {
     _socketClient.off('pointIncrease'); // Clear existing listener
     _socketClient.on('pointIncrease', (playerData) {
@@ -149,22 +136,21 @@ class SocketMethods {
         showGameDialog(context, '${playerData['nickname']} won the round!');
       }
 
-      // Reset flag after a delay
+      /// Reset flag after a delay
       Future.delayed(Duration(seconds: 1), () {
         _dialogShown = false;
       });
     });
   }
 
+  /// listener for end of game
   void endGameListener(BuildContext context) {
     _socketClient.off('endGame'); // Clear existing listener
     _socketClient.on('endGame', (playerData) {
       if (_dialogShown) return; // Prevent multiple dialogs
       _dialogShown = true;
 
-      //winGameDialog(context, '${playerData['nickname']} won the game!');
-
-      // Handle null case for ties
+      /// Handle null case for ties
       String message;
       if (playerData == null || playerData['nickname'] == null) {
         message = "It's a Tie!";
@@ -173,28 +159,30 @@ class SocketMethods {
       }
       showCelebrationAnimation(context);
       winGameDialog(context, message);
-      // Reset flag after a delay
+
+      /// Reset flag after a delay
       Future.delayed(Duration(seconds: 2), () {
         _dialogShown = false;
       });
     });
   }
 
+  /// draw round listener
   void drawRoundListener(BuildContext context) {
-    _socketClient.off('drawRound'); // Clear existing listener
+    _socketClient.off('drawRound');
     _socketClient.on('drawRound', (_) {
-      if (_dialogShown) return; // Prevent multiple dialogs
+      if (_dialogShown) return;
       _dialogShown = true;
 
       showGameDialog(context, 'Draw');
 
-      // Reset flag after a delay
       Future.delayed(Duration(seconds: 1), () {
         _dialogShown = false;
       });
     });
   }
 
+  /// opponent left listener
   void opponentLeftListener(BuildContext context) {
     _socketClient.off('gameOver'); // Clear existing listener
     _socketClient.on('gameOver', (data) {
@@ -212,10 +200,17 @@ class SocketMethods {
     });
   }
 
-  void disconnectSocket() {
-    clearListeners(); // Clear all listeners before disconnecting
-    _socketClient.disconnect();
-    _socketClient.close();
-    _socketClient.dispose();
+  /// to clear all listeners
+  void clearListeners() {
+    _socketClient.off("createRoomSuccess");
+    _socketClient.off("joinRoomSuccess");
+    _socketClient.off("errorOccured");
+    _socketClient.off("updatePlayers");
+    _socketClient.off("updateRoom");
+    _socketClient.off("tapped");
+    _socketClient.off("pointIncrease");
+    _socketClient.off("endGame");
+    _socketClient.off("drawRound");
+    _socketClient.off("gameOver");
   }
 }
