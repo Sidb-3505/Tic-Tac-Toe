@@ -52,6 +52,5 @@ npm run start
 | ![Home](assets/screenshots/home_screen.jpg) | ![Create](assets/screenshots/create_room_screen.jpg) | ![Join](assets/screenshots/join_room_screen.jpg) |
 
 | Game Screen | Win Game |
-|------------|----------|
+|-------------|----------|
 | ![Game Screen](assets/screenshots/game_screen.jpg) | ![Win Game](assets/screenshots/won_the_game.jpg) |
-
