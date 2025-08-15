@@ -37,6 +37,7 @@ cd frontend
 flutter clean
 flutter pub get
 flutter run
+```
 
 
 ### **Backend Setup**  
@@ -44,14 +45,15 @@ flutter run
 cd backend
 npm install
 npm run start
+```
 
 
 ## 📱 Screenshots
 
 | Home | Create Room | Join Room |
 |------|-------------|-----------|
-| <img src="https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/home_screen.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/create_room_screen.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/join_room_screen.jpg" width="200"/> |
+| <img src="assets/screenshots/home_screen.jpg" width="200"/> | <img src="assets/screenshots/create_room_screen.jpg" width="200"/> | <img src="assets/screenshots/join_room_screen.jpg" width="200"/> |
 
 | Game Screen | Win Game |
 |-------------|----------|
-| <img src="https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/game_screen.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sidb-3505/Tic-Tac-Toe/main/assets/screenshots/won_the_game.jpg" width="200"/> |
+| <img src="assets/screenshots/game_screen.jpg" width="200"/> | <img src="assets/screenshots/won_the_game.jpg" width="200"/> |
